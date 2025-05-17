@@ -1,9 +1,7 @@
 # 2025 국토∙교통 데이터활용 경진대회
 
 [공식 대시보드 바로가기 🔗](https://www.bigdata-transportation.kr/pageant/dashboard/CMPE_000000000020041)
-<p align="center">
-  <img src="getImage.jpg" alt="2025 국토교통 데이터활용 경진대회 포스터" width="600"/>
-</p>
+
 
 ---
 
