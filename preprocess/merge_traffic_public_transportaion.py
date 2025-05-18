@@ -6,7 +6,7 @@ base_dir = r'D:\SITE\●국민대\대외활동\●국토 • 교통 데이터활
 output_file = os.path.join(base_dir, '전체 합산.csv')
 
 # 파일 경로
-file_traffic = os.path.join(base_dir, '●교통량 연별 OD 구분.xlsx')
+file_traffic = os.path.join(base_dir, '●교통량 연별 OD 구분_최종.xlsx')
 file_public = os.path.join(base_dir, '●동별 수단OD 서울 동합침_최종_본동통합.csv')
 file_taxi = os.path.join(base_dir, '택시 OD_동정리_합산.csv')
 
