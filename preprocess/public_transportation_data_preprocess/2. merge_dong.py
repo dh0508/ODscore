@@ -1,13 +1,14 @@
-import os
 import pandas as pd
 import re
+import os
 
-# 입력/출력 경로 설정
-input_dir = r'D:\SITE\●국민대\대외활동\●국토 • 교통 데이터활용 경진대회\data\동별 수단OD 서울'
-output_dir = r'D:\SITE\●국민대\대외활동\●국토 • 교통 데이터활용 경진대회\data\동별 수단OD 서울 동합침'
-os.makedirs(output_dir, exist_ok=True)
+# 입력 파일 경로
+input_path = r'D:\SITE\●국민대\대외활동\●국토 • 교통 데이터활용 경진대회\data\동별 인원수, 면적.xlsx'
 
-# 동 이름 정규화 함수
+# 출력 파일 경로
+output_path = r'D:\SITE\●국민대\대외활동\●국토 • 교통 데이터활용 경진대회\data\동별 인원수, 면적 동합침.xlsx'
+
+# 동 이름 정규화 함수 (기존 코드와 동일)
 def merge_dongs(name):
     if pd.isna(name):
         return name
@@ -22,35 +23,24 @@ def merge_dongs(name):
     name = re.sub(r'중계\d+.*동', '중계동', name)
     return name
 
-# 날짜별 반복 처리
-for month in range(1, 13):
-    for day in range(1, 32):
-        date_str = f'2024{month:02d}{day:02d}'
-        file_name = f'동별_수단OD 서울_{date_str}.csv'
-        input_path = os.path.join(input_dir, file_name)
+# 엑셀 파일 읽기
+df = pd.read_excel(input_path)
 
-        if not os.path.exists(input_path):
-            continue
+# 동 이름 컬럼명이 정확히 무엇인지 확인 필요 (예: '동' 혹은 '행정동' 등)
+# 예시는 '동' 컬럼으로 가정
+dong_col = '동'  # 컬럼명에 맞게 수정 필요
 
-        try:
-            df = pd.read_csv(input_path, encoding='euc-kr')
+# 동 이름 정규화 적용
+df[dong_col] = df[dong_col].apply(merge_dongs).str.strip()
 
-            # 동 이름 정리
-            df['출발_동'] = df['출발_동'].apply(merge_dongs).str.strip()
-            df['도착_동'] = df['도착_동'].apply(merge_dongs).str.strip()
+# 동별 합산 (인원수, 면적 등 숫자 컬럼들만 합산)
+# 숫자형 컬럼만 추출
+num_cols = df.select_dtypes(include='number').columns.tolist()
 
-            # ✅ 출발_동, 도착_동 기준으로만 합산
-            df_grouped = df.groupby(
-                ['출발_동', '도착_동'],
-                as_index=False
-            )[["총_승객수", "지하철_승객수", "버스_승객수"]].sum()
+# 동별 합산
+df_grouped = df.groupby(dong_col, as_index=False)[num_cols].sum()
 
-            # 저장
-            output_file = f'동별_수단OD 서울 동합침_{date_str}.csv'
-            output_path = os.path.join(output_dir, output_file)
-            df_grouped.to_csv(output_path, index=False, encoding='euc-kr')
+# 엑셀 저장
+df_grouped.to_excel(output_path, index=False)
 
-            print(f"[✔ 합쳐짐] {file_name} → {output_file}")
-
-        except Exception as e:
-            print(f"[❌ 오류] {file_name}: {e}")
+print(f"[✔ 완료] '{input_path}' 동합침 후 '{output_path}' 저장됨")
