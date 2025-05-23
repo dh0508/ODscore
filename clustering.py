@@ -6,7 +6,7 @@ from sklearn.metrics import pairwise_distances
 # 1. 데이터 불러오기
 file_path = "D:/SITE/●국민대/대외활동/●국토 • 교통 데이터활용 경진대회/data/●전체 합산 택시채움.csv"
 df = pd.read_csv(file_path, encoding='cp949')
-features = ['지하철_승객수', '버스_승객수', '택시_승객수']
+features = ['지하철_승객수', '버스_승객수', '택시_승객수', '교통량']
 
 # 2. 전처리
 X = df[features].fillna(0)

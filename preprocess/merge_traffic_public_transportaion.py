@@ -5,18 +5,18 @@ import os
 base_dir = r'D:\SITE\●국민대\대외활동\●국토 • 교통 데이터활용 경진대회\data'
 output_file = os.path.join(base_dir, '전체 합산.csv')
 
-# 파일 경로
-file_traffic = os.path.join(base_dir, '○교통량 연별 OD 구분_최종.xlsx')
+# 파일 경로 (csv 파일임)
+file_traffic = os.path.join(base_dir, '○교통량 연별 OD 구분_최종.csv')
 file_public = os.path.join(base_dir, '○동별 수단OD 서울 동합침_최종_본동통합.csv')
 file_taxi = os.path.join(base_dir, '택시 OD_동정리_합산.csv')
 
-# 파일 불러오기
-df_traffic = pd.read_excel(file_traffic)
+# 파일 불러오기 (모두 csv, 인코딩 euc-kr)
+df_traffic = pd.read_csv(file_traffic, encoding='euc-kr')
 df_public = pd.read_csv(file_public, encoding='euc-kr')
 df_taxi = pd.read_csv(file_taxi, encoding='euc-kr')
 
 # 필요 열만 추출
-df_traffic = df_traffic[['출발_동', '도착_동', '연별 합계']]
+df_traffic = df_traffic[['출발_동', '도착_동', '교통량']]
 df_public = df_public[['출발_동', '도착_동', '지하철_승객수', '버스_승객수']]
 df_taxi = df_taxi[['출발_동', '도착_동', '택시_승객수']]
 

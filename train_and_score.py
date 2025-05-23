@@ -12,7 +12,7 @@ df = pd.read_csv(input_path, encoding='cp949')
 train_df = df[df['label'].isin([0, 1])]
 
 # 학습 feature와 target
-X_train = train_df[['지하철_승객수', '버스_승객수', '택시_승객수']]
+X_train = train_df[['지하철_승객수', '버스_승객수', '택시_승객수', '교통량']]
 y_train = train_df['label']
 
 # 전체 feature 추출
