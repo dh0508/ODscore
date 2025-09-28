@@ -1,10 +1,5 @@
 # 2025 국토∙교통 데이터활용 경진대회
 
-[공식 대시보드 바로가기 🔗](https://www.bigdata-transportation.kr/pageant/dashboard/CMPE_000000000020041)
-<img src="https://github.com/dh0508/ODscore/blob/main/files/523750.jpg" width="450">
-
----
-
 ## 🎯 대회 개요
 
 - **대회명**: 2025 국토∙교통 데이터활용 경진대회
@@ -14,7 +9,12 @@
   - AI 모델을 통한 버스 노선 최적화
   - 사용자 중심의 교통 서비스 개선 제안
 
+<img src="https://github.com/dh0508/ODscore/blob/main/files/523750.jpg" width="450">
+
+[공식 대시보드 바로가기 🔗](https://www.bigdata-transportation.kr/pageant/dashboard/CMPE_000000000020041)
+
 ---
+
 
 ## 👥 팀원
 
